@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>lamp</title>
+		<meta name="viewport" content="width=device-width, intial-scale=1.0">
+	</head>
+
+	<body>
+		<form>
+			<fieldset>
+				<legend>rgb</legend>
+				<div>
+					<input type="range" id="redSlider" class="sliders" name="redSlider" min="0" max="255">
+					<label for="redSlider">r</label>
+					<span id="redValue" class="values"></span>
+					<br>
+					
+					<input type="range" id="greenSlider" class="sliders" name="greenSlider" min="0" max="255">
+					<label for="greenSlider">g</label>
+					<span id="greenValue" class="values"></span>
+					<br>
+					
+					<input type="range" id="blueSlider" class="sliders" name="blueSlider" min="0" max="255">
+					<label for="blueSlider">b</label>
+					<span id="blueValue" class="values"></span>
+					<br>
+				</div>
+
+				<div id="currentColor" style="height: 100px">
+
+				</div>
+			</fieldset>
+
+		</form>
+	
+	<script>
+		
+		let red   = document.getElementById("redSlider");
+		let green = document.getElementById("greenSlider");
+		let blue  = document.getElementById("blueSlider");
+		let currentColor  = document.getElementById("currentColor");
+
+
+
+		async function setColor(e) {
+			let valueId = e.target.id.replace('Slider', 'Value');
+			let value = document.getElementById(valueId);
+			value.innerHTML = e.target.value;
+
+			currentColor.style.background = `rgb( ${red.value}, ${green.value}, ${blue.value} )`
+			console.log( currentColor.style.background );
+
+			
+			fetch("http://192.168.2.27/api/rgb", {
+				method: "POST",
+				body: JSON.stringify(
+					{
+						r: red.value,
+						g: green.value,
+						b: blue.value
+					}
+				)
+			});
+
+		}
+
+	
+
+
+		function initialiseValues() {
+			let values = document.getElementsByClassName("values");
+			for(let i = 0; i < values.length; i++) {
+				let sliderName = values[i].id.replace("Value", "Slider");
+				let value = document.getElementById(sliderName).value;
+				values[i].innerHTML = value;
+			}
+		}
+		function addEvents() {
+			let sliders = Array.from( document.getElementsByClassName("sliders") );
+			sliders.forEach( s => s.addEventListener('change', setColor, false) );
+		}
+
+
+
+		window.onload = () => {
+			initialiseValues();
+			addEvents();
+		}
+
+
+
+	</script>
+	</body>
+</html>

@@ -29,11 +29,6 @@ uint32_t Leds::setHSV(uint32_t h, int s, int v) {
 	return gamma;
 }
 uint32_t Leds::setRGB(int r, int g, int b) {
-	Serial.println("Leds setRGB()");
-	Serial.println(r);
-	Serial.println(g);
-	Serial.println(b);
-
 	uint32_t color = ring.Color(r, g, b);
 	uint32_t gamma = ring.gamma32(color);
 	setPixels(gamma);
@@ -53,7 +48,6 @@ void Leds::setState(bool state) {
 }
 
 
-void Leds::notify(Color color) {
-	Serial.println("Leds notify()");
-	setRGB(color.getR(), color.getG(), color.getB());
+void Leds::notify(const Color* color) {
+	setRGB(color->getR(), color->getG(), color->getB());
 }

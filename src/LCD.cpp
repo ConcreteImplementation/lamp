@@ -18,9 +18,9 @@ void LCD::_clearRow(int row) {
 }
 
 
-void LCD::notify(Color color) {
+void LCD::notify(const Color*  color) {
 	snprintf(colorInfo, sizeof(colorInfo), " R%3d G%3d B%3d",
-		color.getR(), color.getG(), color.getB());
+		color->getR(), color->getG(), color->getB());
 	
 	_clearRow(0);
 	lcd.setCursor(0, 0);

@@ -17,6 +17,6 @@ private:
 public:
 	LCD();
 	
-	void notify(Color color) override;
+	void notify(const Color* color) override;
 	void show(const char* texte) override;
 };

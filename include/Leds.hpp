@@ -27,5 +27,5 @@ public:
 	bool getState();
 	void setState(bool state);
 
-	void notify(Color color) override;
+	void notify(const Color*  color) override;
 };

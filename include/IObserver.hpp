@@ -5,5 +5,5 @@
 
 class IObserver {
 public:
-	virtual void notify(Color color) = 0;
+	virtual void notify(const Color* color) = 0;
 };

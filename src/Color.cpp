@@ -16,15 +16,15 @@ void Color::setRGB(int r, int g, int b) {
 void Color::setHSV(uint32_t h, int s, int v) {
 
 }
-int Color::getR() {
+int Color::getR() const {
 	return r;
 }
-int Color::getG() {
+int Color::getG() const {
 	return g;
 }
-int Color::getB() {
+int Color::getB() const {
 	return b;
 }
-uint32_t Color::getAsNumber() {
+uint32_t Color::getAsNumber() const {
 	return (r << 16) | (g << 8) | (b);
 }

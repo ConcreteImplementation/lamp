@@ -6,11 +6,9 @@ Lamp::Lamp()
 
 
 void Lamp::_notifyOberservers() {
-	Serial.println("Lamp _notifyOberservers()");
-
 	std::list<IObserver*>::iterator i = observers.begin();
 	while(i != observers.end()) {
-		(*i)->notify(Color(color));
+		(*i)->notify( &color );
 		++i;
 	}
 }

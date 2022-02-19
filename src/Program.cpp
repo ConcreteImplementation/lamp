@@ -3,7 +3,11 @@
 
 #include "Program.hpp"
 #include "WifiConfiguration.hpp"
+#include "Potentiometer.hpp"
+#include "CommandChangeLampHue.hpp"
 #include "LCD.hpp"
+
+
 
 Program::Program() {
 	if(IS_DEBUG)
@@ -18,8 +22,14 @@ Program::Program() {
 	textDisplay->show(localIP);
 
 
-	leds = new Leds(LEDS_COUNT, LEDS_PIN, LEDS_BRIGHTNESS);
 	lamp = new Lamp();
+
+	leds = new Leds(LEDS_COUNT, LEDS_PIN, LEDS_BRIGHTNESS);
+
+	hueGradiant = new Potentiometer(POTENTIOMETER_PIN, 4095, 0.06);
+	CommandChangeLampHue* changeHue = new CommandChangeLampHue(lamp, hueGradiant);
+	hueGradiant->setOnChange(changeHue);
+	
 
 	lamp->subscribe(leds);
 	lamp->subscribe(lcd);
@@ -29,5 +39,6 @@ Program::Program() {
 }
 
 void Program::loop() {
+	hueGradiant->tick();
 	server->tick();
 }

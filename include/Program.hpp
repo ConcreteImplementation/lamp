@@ -1,5 +1,6 @@
 #pragma once
 
+#include "AbstractGradable.hpp"
 #include "Lamp.hpp"
 #include "Leds.hpp"
 #include "ApiServer.hpp"
@@ -8,6 +9,8 @@
 
 class Program {
 private:
+	AbstractGradable* hueGradiant;
+	AbstractGradable* sound;
 	Leds* leds;
 	Lamp* lamp;
 	ApiServer* server;

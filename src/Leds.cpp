@@ -48,6 +48,6 @@ void Leds::setState(bool state) {
 }
 
 
-void Leds::notify(const Color* color) {
+void Leds::notify(const IColor* color) {
 	setRGB(color->getR(), color->getG(), color->getB());
 }

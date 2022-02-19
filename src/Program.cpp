@@ -4,7 +4,7 @@
 #include "Program.hpp"
 #include "WifiConfiguration.hpp"
 #include "Potentiometer.hpp"
-#include "CommandChangeLampHue.hpp"
+#include "CommandChangeHue.hpp"
 #include "LCD.hpp"
 
 
@@ -28,7 +28,7 @@ Program::Program() {
 
 	int resolution = (1 << ANALOG_READ_RESOLUTION) - 1;
 	hueGradiant = new Potentiometer(POTENTIOMETER_PIN, resolution, POTENTIOMETER_TOLERANCE);
-	CommandChangeLampHue* changeHue = new CommandChangeLampHue(lamp, hueGradiant);
+	CommandChangeHue* changeHue = new CommandChangeHue(lamp, hueGradiant);
 	hueGradiant->setOnChange(changeHue);
 	
 

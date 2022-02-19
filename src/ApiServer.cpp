@@ -4,9 +4,8 @@
 #include "ApiServer.hpp"
 #include "Color.hpp"
 
-ApiServer::ApiServer(Lamp* lamp)
-	: lamp(lamp)
-	// ,	m_serveur(80     )
+ApiServer::ApiServer(IColor* color)
+	: color(color)
 {
 	bool reussi = SPIFFS.begin(true);
 	if( ! reussi) Serial.println("Erreur ouvertur SPIFFS");
@@ -30,6 +29,7 @@ ApiServer::ApiServer(Lamp* lamp)
 		this->ressourceNonTrouvee();
 	});
 
+	server.enableCORS(true);
 	server.begin();
 }
 
@@ -93,11 +93,9 @@ void ApiServer::setHSV() {
 	Serial.print("val: ");
 	Serial.println(val);
 
-	lamp->setHSV(hue, sat, val);
-	Color color = lamp->getColor();
-
-
-	server.send(200, "text/plain", String(color.getAsNumber()));
+	color->setHSV(hue, sat, val);
+	
+	server.send(200, "text/plain", String(color->getAsNumber()));
 }
 
 
@@ -129,11 +127,9 @@ void ApiServer::setRGB() {
 	Serial.print("b: ");
 	Serial.println(b);
 
-	lamp->setRGB(r, g, b);
-	Color color = lamp->getColor();
+	color->setRGB(r, g, b);
 
-	server.enableCORS(true);
-	server.send(200, "text/plain", String(color.getAsNumber()));
+	server.send(200, "text/plain", String(color->getAsNumber()));
 }
 
 

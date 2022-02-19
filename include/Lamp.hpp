@@ -2,26 +2,28 @@
 
 #include <list>
 
-#include "IObserver.hpp"
-#include "ISubject.hpp"
+#include "IColorObserver.hpp"
+#include "IColor.hpp"
 #include "Color.hpp"
 
-#define ON true
-#define OFF false
 
-class Lamp : public ISubject {
+
+class Lamp : public IColor {
 private:
 	Color color;
-	std::list<IObserver*> observers;
+	std::list<IColorObserver*> observers;
 
 	void _notifyOberservers();
 
 public:
 	Lamp();
-	
-	void setHSV(uint32_t h, int s, int v);
-	void setRGB(int r, int g, int b);
 
-	void subscribe(IObserver* observer);
-	Color getColor() override;
+	void subscribe(IColorObserver* observer);
+	
+	void setRGB(int r, int g, int b) override;
+	void setHSV(int h, float s, float v) override;
+	int getR() const override;
+	int getG() const override;
+	int getB() const override;
+	uint32_t getAsNumber() const override;
 };

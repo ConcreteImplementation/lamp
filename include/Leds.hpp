@@ -3,12 +3,12 @@
 #include <Adafruit_NeoPixel.h>
 
 #include "Lamp.hpp"
-#include "IObserver.hpp"
+#include "IColorObserver.hpp"
 
 #define ON true
 #define OFF false
 
-class Leds : public IObserver {
+class Leds : public IColorObserver {
 private:
 	Adafruit_NeoPixel ring;
 	int numPixels;
@@ -27,5 +27,5 @@ public:
 	bool getState();
 	void setState(bool state);
 
-	void notify(const Color*  color) override;
+	void notify(const IColor*  color) override;
 };

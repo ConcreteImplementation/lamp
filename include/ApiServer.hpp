@@ -4,13 +4,13 @@
 #include <WebServer.h>
 #include <SPIFFS.h>
 
-#include "Lamp.hpp"
+#include "IColor.hpp"
 
 
 class ApiServer {
 private:
 	WebServer server;
-	Lamp* lamp;
+	IColor* color;
 
 	void ressourceNonTrouvee();
 	void setHSV();
@@ -19,6 +19,6 @@ private:
 	void _printRequestInfo();
 
 public:
-	ApiServer(Lamp* lamp);
+	ApiServer(IColor* color);
 	void tick();
 };

@@ -1,16 +1,16 @@
 #pragma once
 
 #include "ICommand.hpp"
-#include "Lamp.hpp"
+#include "IColor.hpp"
 #include "AbstractGradable.hpp"
 
-class CommandChangeLampHue : public ICommand {
+class CommandChangeHue : public ICommand {
 private:
-	Lamp* lamp;
+	IColor* color;
 	AbstractGradable* gradable;
 	
 public:
-	CommandChangeLampHue(Lamp* lamp, 	AbstractGradable* gradable);
+	CommandChangeHue(IColor* color, 	AbstractGradable* gradable);
 
 	void execute() override;
 };

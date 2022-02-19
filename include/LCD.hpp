@@ -4,9 +4,9 @@
 #include <LiquidCrystal_I2C.h>
 
 #include "ITextDisplay.hpp"
-#include "IObserver.hpp"
+#include "IColorObserver.hpp"
 
-class LCD : public IObserver, public ITextDisplay {
+class LCD : public IColorObserver, public ITextDisplay {
 private:
 	LiquidCrystal_I2C lcd;
 	char colorInfo[17];
@@ -17,6 +17,6 @@ private:
 public:
 	LCD();
 	
-	void notify(const Color* color) override;
+	void notify(const IColor* color) override;
 	void show(const char* texte) override;
 };

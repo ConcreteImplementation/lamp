@@ -18,7 +18,7 @@ void LCD::_clearRow(int row) {
 }
 
 
-void LCD::notify(const Color*  color) {
+void LCD::notify(const IColor* color) {
 	snprintf(colorInfo, sizeof(colorInfo), " R%3d G%3d B%3d",
 		color->getR(), color->getG(), color->getB());
 	

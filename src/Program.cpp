@@ -13,7 +13,7 @@ Program::Program() {
 	if(IS_DEBUG)
 		Serial.begin(BAUD_RATE);
 
-	LCD* lcd = new LCD();
+	lcd = new LCD();
 	textDisplay = lcd;
 	textDisplay->show("Connecting...");
 
@@ -42,4 +42,5 @@ Program::Program() {
 void Program::loop() {
 	hueGradiant->tick();
 	server->tick();
+	lcd->tick();
 }

@@ -26,7 +26,8 @@ Program::Program() {
 
 	leds = new Leds(LEDS_COUNT, LEDS_PIN, LEDS_BRIGHTNESS);
 
-	hueGradiant = new Potentiometer(POTENTIOMETER_PIN, 4095, 0.06);
+	int resolution = (1 << ANALOG_READ_RESOLUTION) - 1;
+	hueGradiant = new Potentiometer(POTENTIOMETER_PIN, resolution, POTENTIOMETER_TOLERANCE);
 	CommandChangeLampHue* changeHue = new CommandChangeLampHue(lamp, hueGradiant);
 	hueGradiant->setOnChange(changeHue);
 	

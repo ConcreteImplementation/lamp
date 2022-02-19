@@ -13,7 +13,8 @@ public:
 	Color(Color* color);;
 
 	void setRGB(int r, int g, int b);
-	void setHSV(uint32_t h, int s, int v);
+	void setHue(float hue);
+	void setHSV(int h, float s, float v);
 	int getR() const;
 	int getG() const;
 	int getB() const;
